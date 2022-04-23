@@ -20,17 +20,13 @@ class JobPositionController {
     static async getJobPositionPage(req, res, next) {
         try {
             const job = await axios.get(`${JOB_URL}`)
-            console.log("total job", job.data.length)
 
             const { page } = req.query;
             const limit = 5;
             const startIndex = (page - 1) * limit;
             const endIndex = page * limit;
             const result = job.data.slice(startIndex - endIndex)
-            console.log("start", startIndex)
-            console.log("end", endIndex)
-            // console.log("result", result)
-
+            
             res.status(200).json({
                 success: true,
                 message: "Success retrive Job Position list page",
